@@ -7,8 +7,11 @@ import com.santander.banco811.model.TipoConta;
 import com.santander.banco811.projection.ContaView;
 import com.santander.banco811.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,29 +22,37 @@ public class ContaController {
     ContaService contaService;
 
     @GetMapping("/view")
-    public List<ContaView> getAllContaViewByTipoConta(@RequestParam TipoConta tipoConta) {
+    public List<ContaView> getAllContaViewByTipoConta(
+            @RequestParam TipoConta tipoConta
+    ){
         return contaService.getAllViewByTipoConta(tipoConta);
     }
 
-
-
     @PostMapping("/{id}")
-    public ContaResponse create(@PathVariable("id") Integer usuarioId, @RequestBody ContaRequest contaRequest) {
-        return contaService.create(usuarioId, contaRequest);
+    public ResponseEntity<ContaResponse> create(
+            @PathVariable("id") Integer usuarioId,
+            @RequestBody ContaRequest contaRequest,
+            UriComponentsBuilder uriComponentsBuilder
+    ) {
+        ContaResponse conta =  contaService.create(usuarioId, contaRequest);
+        URI uri = uriComponentsBuilder .path("/conta/{id}").buildAndExpand(conta.getId()).toUri();
+        return ResponseEntity.created(uri).body(conta);
     }
 
     @PutMapping("/{id}")
-    public Conta update(@PathVariable Integer id, @RequestBody ContaRequest contaRequest) {
-        return contaService.update(contaRequest, id);
+    public ResponseEntity<Conta> update(
+            @PathVariable Integer id,
+            @RequestBody ContaRequest contaRequest,
+            UriComponentsBuilder uriComponentsBuilder
+    ) {
+        Conta conta = contaService.update(contaRequest, id);
+        URI uri = uriComponentsBuilder.path("/conta/{id}").buildAndExpand(conta.getId()).toUri();
+        return ResponseEntity.created(uri).body(conta);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public String delete(@PathVariable Integer id) {
         contaService.delete(id);
+        return "Conta deletada com sucesso!";
     }
-
-
-
-
-
 }

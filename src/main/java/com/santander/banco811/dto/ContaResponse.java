@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class ContaResponse {
 
     private UsuarioResponse usuario;
+    private Integer id;
     private Integer numero;
     private Integer agencia;
     private TipoConta tipoConta;
@@ -26,6 +27,7 @@ public class ContaResponse {
 
     public ContaResponse(Conta conta){
         this.usuario = new UsuarioResponse(conta.getUsuario());
+        this.id = conta.getId();
         this.numero = conta.getNumero();
         this.agencia = conta.getAgencia();
         this.tipoConta = conta.getTipoConta();
