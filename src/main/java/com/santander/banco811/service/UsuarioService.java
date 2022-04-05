@@ -5,8 +5,6 @@ import com.santander.banco811.dto.UsuarioResponse;
 import com.santander.banco811.model.Usuario;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface UsuarioService {
     Page<Usuario> getAll(String nome, int page, int size);
     Page<UsuarioResponse> getAllByCpf(String cpf, int page, int size);

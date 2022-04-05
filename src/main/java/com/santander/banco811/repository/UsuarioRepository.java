@@ -1,7 +1,6 @@
 package com.santander.banco811.repository;
 
 import com.santander.banco811.dto.UsuarioResponse;
-import com.santander.banco811.model.Conta;
 import com.santander.banco811.model.Usuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
