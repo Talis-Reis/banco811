@@ -1,7 +1,7 @@
 package com.santander.banco811.dto;
 
 import com.santander.banco811.model.Conta;
-import com.santander.banco811.model.TipoConta;
+import com.santander.banco811.model.Enum.TipoConta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

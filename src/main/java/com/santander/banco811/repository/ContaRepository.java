@@ -1,8 +1,10 @@
 package com.santander.banco811.repository;
 
 import com.santander.banco811.model.Conta;
-import com.santander.banco811.model.TipoConta;
+import com.santander.banco811.model.Enum.TipoConta;
 import com.santander.banco811.projection.ContaView;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -43,6 +45,7 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
             @Param("nome") String nome
     );
 
-
     List<ContaView> findAllByTipoConta(TipoConta tipoConta);
+
+    Page<Conta> findByNumero(Integer numero, PageRequest pageRequest);
 }

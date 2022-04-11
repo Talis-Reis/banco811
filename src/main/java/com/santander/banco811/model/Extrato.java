@@ -1,6 +1,5 @@
 package com.santander.banco811.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.santander.banco811.dto.ExtratoRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,7 +42,6 @@ public class Extrato {
     @LastModifiedDate
     private LocalDateTime dataAtualizacao;
 
-    @JsonIgnore
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "conta_id", referencedColumnName = "id")

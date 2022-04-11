@@ -2,6 +2,7 @@ package com.santander.banco811.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.santander.banco811.dto.ContaRequest;
+import com.santander.banco811.model.Enum.TipoConta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,7 +46,6 @@ public class Conta {
     @Column(name = "tipo_conta")
     @Enumerated(EnumType.STRING)
     private TipoConta tipoConta;
-
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")

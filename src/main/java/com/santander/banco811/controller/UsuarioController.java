@@ -43,6 +43,7 @@ public class UsuarioController {
         return usuarioService.getById(id);
     }
 
+
     @PutMapping("/{id}")
     public Usuario update(@PathVariable Integer id, @RequestBody UsuarioRequest usuarioRequest) {
         return usuarioService.update(usuarioRequest, id);
